@@ -29,7 +29,7 @@ exports.login=async(req,res)=> {
     console.log("inside  login controller function");
     const{email,password}= req.body;
     try{
-const  existingUser =await user.findOne({ email,password });
+const  existingUser = await user.findOne({ email,password });
 if(existingUser){
     const token = jwt.sign({userId:existingUser._id},"secret123")
     res.status(200).json({
