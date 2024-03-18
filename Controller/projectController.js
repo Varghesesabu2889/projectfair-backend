@@ -36,3 +36,35 @@ try{
         res.status(401).json(`Request failed,Error ${err}`)
     }
 }
+
+
+//getUserProjects
+exports.allUserProjects = async(req,res)=>{
+    const userId= req.payload
+    try{
+const userProjects = await projects.find({userId})
+res.status(200).json(userProjects)
+    }catch(err){
+res.status(401).json(err)
+    }
+}
+
+//getAllProjects
+exports.allProjects = async(req,res)=>{
+    try{
+const allProjects = await projects.find()
+res.status(200).json(allProjects)
+    }catch(err){
+res.status(401).json(err)
+    }
+}
+
+//getHomeProjects
+exports.getHomeProjects = async(req,res)=>{
+    try{
+const homeProjects = await projects.find().limit(3)
+res.status(200).json(homeProjects)
+    }catch(err){
+res.status(401).json(err)
+    }
+}
