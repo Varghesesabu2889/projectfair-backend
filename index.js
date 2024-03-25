@@ -13,6 +13,7 @@ pfServer.use(cors())
 //parse incoming requests as form or JSON
 pfServer.use(express.json())
 pfServer.use(router)
+pfServer.use('/uploads',express.static('./uploads'))
 
 //create a port  for the application to run on, defaults to 4000 if not provided
 const PORT =  4000 || process.env.PORT ;

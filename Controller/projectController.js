@@ -49,15 +49,7 @@ res.status(401).json(err)
     }
 }
 
-//getAllProjects
-exports.allProjects = async(req,res)=>{
-    try{
-const allProjects = await projects.find()
-res.status(200).json(allProjects)
-    }catch(err){
-res.status(401).json(err)
-    }
-}
+
 
 //getHomeProjects
 exports.getHomeProjects = async(req,res)=>{
@@ -68,3 +60,20 @@ res.status(200).json(homeProjects)
 res.status(401).json(err)
     }
 }
+
+
+
+
+//getAllProjects
+ exports.allProjects = async(req,res)=>{
+    const searchKey = req.query.search
+    const query={
+        languages:{$regex:searchKey,$options:"i"}
+    }
+     try{
+ const allProjects = await projects.find(query)
+ res.status(200).json(allProjects)
+     }catch(err){
+ res.status(401).json(err)
+     }
+ }
